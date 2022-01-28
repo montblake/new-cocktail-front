@@ -15,7 +15,7 @@ function App() {
 	
 	// GET DATA
 	function getRecipes(){
-		fetch(backendURL.base + 'recipes/')
+		fetch(backendURL.base + 'recipes')
 		.then(res => res.json())
 		.then(json => setRecipeState({recipes: json}), (err)=>{
 			console.log(err)
@@ -23,7 +23,7 @@ function App() {
 	}
 
 	function getIngredients(){
-		fetch(backendURL.base + 'ingredients/')
+		fetch(backendURL.base + 'ingredients')
 		.then(res => res.json())
 		.then(json => setIngredientState({ingredients: json}), (err)=>{
 			console.log(err)
@@ -32,8 +32,8 @@ function App() {
 
 	// More Crud
 	function createIngredient(formState){
-        console.log(formState);
-		fetch(backendURL.base + 'ingredients/', {
+        console.log(backendURL);
+		fetch(backendURL.base + 'ingredients', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
