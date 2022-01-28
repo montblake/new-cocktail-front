@@ -38,15 +38,17 @@ function App() {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: {
+			body: JSON.stringify({
 				name: formState.name,
 				category: formState.category
-			}
-		});
-		getIngredients();
+			}),
+			credentials: 'include'
+		}).then(res => res.json())
+		.then(json => {
+			console.log(json);
+			getIngredients();
+		})
     }
-
-
 
 	// FUNCTIONS TO PASS DOWN
 	function handlePageChoice(e){
