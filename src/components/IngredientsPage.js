@@ -1,5 +1,5 @@
 import Ingredient from './Ingredient';
-
+import IngredientForm from './IngredientForm';
 
 function IngredientsPage(props){
     function ingredientsList(){
@@ -14,7 +14,9 @@ function IngredientsPage(props){
             <div>
                 {props.ingredients && ingredientsList()}
             </div>
+            <IngredientForm createIngredient={props.createIngredient}/>
         </section>
+        
     )
 }
 

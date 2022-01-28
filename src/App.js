@@ -30,6 +30,24 @@ function App() {
 		});
 	}
 
+	// More Crud
+	function createIngredient(formState){
+        console.log(formState);
+		fetch(backendURL.base + 'ingredients/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: {
+				name: formState.name,
+				category: formState.category
+			}
+		});
+		getIngredients();
+    }
+
+
+
 	// FUNCTIONS TO PASS DOWN
 	function handlePageChoice(e){
 		if (e.target.name === "recipes"){
@@ -43,11 +61,11 @@ function App() {
 
 	useEffect(()=>{
 		getRecipes();
-	});
+	}, []);
 
 	useEffect(()=>{
 		getIngredients();
-	});
+	}, []);
 	
 	return (
 		<div className="container">
@@ -59,7 +77,10 @@ function App() {
 			<main>
 				{page.recipes ? 
 				<RecipesPage recipes={recipeState.recipes} /> : 
-				<IngredientsPage ingredients={ingredientState.ingredients} />}
+				<IngredientsPage 
+					ingredients={ingredientState.ingredients} 
+					createIngredient={createIngredient}
+				/>}
 			</main>
 		</div>
 	);
